@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ChatInput } from './components/ChatInput';
 import ChatMessages from './components/ChatMessages';
 import { Chatbot } from 'supersimpledev';
+import FaviconImage from './assets/finder.png';
 import './App.css';
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
       'dog': 'Mila',
       '1M$': 'March 25, 2030',
       '1m$': 'March 25, 2030',
-      'unique id': function() {
+      'unique id': function () {
         return `Sure! Here's a unique ID: ${crypto.randomUUID()}`;
       }
     });
@@ -24,16 +25,23 @@ function App() {
     localStorage.setItem('messages', JSON.stringify(chatMessages));
   }, [chatMessages]);
 
+  const title = `${chatMessages.length} Messages`;
+
   return (
-    <div className="app-container">
-      <ChatMessages
-        chatMessages={chatMessages}
-      />
-      <ChatInput
-        chatMessages={chatMessages}
-        setChatMessages={setChatMessages}
-      />
-    </div>
+    <>
+      <title>{title}</title>
+      <link rel="icon" type="image/svg+xml" href={FaviconImage} />
+
+      <div className="app-container">
+        <ChatMessages
+          chatMessages={chatMessages}
+        />
+        <ChatInput
+          chatMessages={chatMessages}
+          setChatMessages={setChatMessages}
+        />
+      </div>
+    </>
   );
 }
 
